@@ -10,12 +10,15 @@ const twitterClient = new TwitterApi({
 });
 
 const tweet = () => {
-    const nowDate = new Date(); 
-    const date = nowDate.getFullYear()+'/'+(nowDate.getMonth()+1)+'/'+nowDate.getDate(); 
-    const countdown = Math.floor((new Date("2022-07-14") - new Date(date)) / (60*60*24*1000));
-    const tweetBody = `Plus que ${countdown} jours avant les Vieilles Charrues ! #${nowDate.getSeconds()} @evantinmar`;
+    const now = new Date().toLocaleDateString("fr-FR");
+    const nowDate = parseInt(now.substring(6, 10))+'/'+parseInt(now.substring(3, 5))+'/'+parseInt(now.substring(0, 2));
+    const countdown = Math.floor((new Date("2022-07-14") - new Date(nowDate)) / (60*60*24*1000));
+    const emoji = String.fromCodePoint(parseInt("23F0", 16));
 
-  twitterClient.v2.tweet({ "text": tweetBody });
+    if (countdown > 0) {
+        const tweetBody = `${emoji} Plus que ${countdown} jours avant les Vieilles Charrues !`;
+        twitterClient.v2.tweet({ "text": tweetBody });
+    }
 };
 
 tweet();
