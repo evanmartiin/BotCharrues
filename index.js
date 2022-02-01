@@ -12,7 +12,7 @@ const twitterClient = new TwitterApi({
 const tweet = () => {
     const now = new Date();
     const nowDate = now.getFullYear()+'/'+(now.getMonth()+1)+'/'+now.getDate();
-    const countdown = Math.floor((new Date("2022-07-14") - new Date(nowDate)) / (60*60*24*1000)) - 1;
+    const countdown = Math.floor((new Date("2022-07-14") - new Date(nowDate)) / (60*60*24*1000));
     const emoji = String.fromCodePoint(parseInt("23F0", 16));
 
     if (countdown > 0) {
